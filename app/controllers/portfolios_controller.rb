@@ -1,5 +1,5 @@
 class PortfoliosController < ApplicationController
-  before_action :find_portfolio, only: %i[show edit update]
+  before_action :find_portfolio, only: %i[show edit update destroy]
   def index
     @portfolio_items = Portfolio.all
   end
@@ -33,6 +33,14 @@ class PortfoliosController < ApplicationController
       else
         format.html { render :new, status: :unprocessable_entity }
       end
+    end
+  end
+
+  def destroy
+    @portfolio_item.destroy
+
+    respond_to do |format|
+      format.html { redirect_to portfolios_path, notice: "portfolio item was successfully destroyed." }
     end
   end
 
