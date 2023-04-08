@@ -4,11 +4,15 @@ if we use _url for it it will give a full path instead of relative path -->
 <%= link_to "create New Item", new_portfolio_url %>
 
 <% @portfolio_items.each do |portfolio_item| %>
-<p><%= portfolio_item.title %></p>
+<!-- link to show which is just portfolio path add link to for the title
+ instead of passing portfolio_item.id to path we can just pass portfolio because rails will
+ know that we are passing the id
+ -->
+<p><%= link_to portfolio_item.title, portfolio_path(portfolio_item) %></p>
 <p><%= portfolio_item.subtitle %></p>
 <p><%= portfolio_item.body %></p>
 <p><%= image_tag portfolio_item.thumb_image unless portfolio_item.thumb_image.nil? %></p>
 <!-- sent id along to the portfolio for edit path since :id can pass as arg in path -->
-<%= link_to "Edit Portfolio", edit_portfolio_path(portfolio_item.id) %>
+<%= link_to "Edit Portfolio", edit_portfolio_path(portfolio_item) %>
 
 <%end%>
