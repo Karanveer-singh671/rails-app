@@ -32,6 +32,10 @@ class BlogsController < ApplicationController
     end
   end
 
+  def toggle_status
+    
+  end
+
   # PATCH/PUT /blogs/1 or /blogs/1.json
   def update
     respond_to do |format|
